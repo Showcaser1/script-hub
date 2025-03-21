@@ -16,6 +16,7 @@
             color: #00ff88;
             font-family: 'Orbitron', sans-serif;
             overflow-x: hidden;
+            transition: background 0.5s ease;
         }
 
         /* Navigation Bar */
@@ -52,6 +53,44 @@
         @keyframes blink-caret {
             from, to { border-color: transparent; }
             50% { border-color: #00ff88; }
+        }
+
+        /* Background Change Section */
+        .background-controls {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .background-controls button {
+            background-color: #000;
+            color: #00ff88;
+            border: 1px solid #00ff88;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .background-controls button:hover {
+            background-color: #00ff88;
+            color: #000;
+            box-shadow: 0 0 15px #00ff88;
+        }
+        .background-controls input[type="file"] {
+            display: none;
+        }
+        .background-controls label {
+            background-color: #000;
+            color: #00ff88;
+            border: 1px solid #00ff88;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .background-controls label:hover {
+            background-color: #00ff88;
+            color: #000;
+            box-shadow: 0 0 15px #00ff88;
         }
 
         /* Main Content */
@@ -161,6 +200,14 @@
         </div>
     </nav>
 
+    <!-- Background Change Controls -->
+    <div class="background-controls">
+        <button onclick="changeBackground('default')">Default Background</button>
+        <button onclick="changeBackground('gradient')">Gradient Background</button>
+        <label for="uploadImage">Upload Background</label>
+        <input type="file" id="uploadImage" accept="image/*" onchange="uploadBackground(event)">
+    </div>
+
     <!-- Cool Intro Animation -->
     <div class="intro glow">
         Welcome to S-Hub Scripts
@@ -242,6 +289,32 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/slapbattle
         setTimeout(() => {
             typingSound.pause();
         }, 3000);
+
+        // Function to change background
+        function changeBackground(type) {
+            const body = document.body;
+            if (type === 'default') {
+                body.style.background = 'linear-gradient(135deg, #0d0d0d, #1a1a1a)';
+                body.style.backgroundImage = 'none';
+            } else if (type === 'gradient') {
+                body.style.background = 'linear-gradient(135deg, #1a1a1a, #0d0d0d)';
+                body.style.backgroundImage = 'none';
+            }
+        }
+
+        // Function to upload custom background
+        function uploadBackground(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.body.style.backgroundImage = `url(${e.target.result})`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 </body>
 </html>
