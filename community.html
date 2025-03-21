@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S-Hub Scripts</title>
+    <title>Community Scripts - S-Hub Scripts</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -23,7 +23,7 @@
             font-weight: bold;
             text-shadow: 0 0 5px #00ff88; /* Updated green color */
         }
-        .download-section {
+        .community-section {
             background: #1a1a1a;
             padding: 20px;
             border-radius: 10px;
@@ -46,7 +46,18 @@
         .script-card p {
             color: #00ff88; /* Updated green color */
         }
-        .copy-btn {
+        .form-control {
+            background-color: #000;
+            color: #00ff88; /* Updated green color */
+            border: 1px solid #00ff88; /* Updated green color */
+        }
+        .form-control:focus {
+            background-color: #000;
+            color: #00ff88; /* Updated green color */
+            border: 1px solid #00ff88; /* Updated green color */
+            box-shadow: 0 0 10px #00ff88; /* Updated green color */
+        }
+        .submit-btn {
             background-color: #000;
             color: #00ff88; /* Updated green color */
             border: 1px solid #00ff88; /* Updated green color */
@@ -58,7 +69,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        .copy-btn:hover {
+        .submit-btn:hover {
             background-color: #00ff88; /* Updated green color */
             color: #000;
             box-shadow: 0 0 10px #00ff88; /* Updated green color */
@@ -85,24 +96,6 @@
                 text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88; /* Updated green color */
             }
         }
-        /* Intro Animation */
-        .intro {
-            text-align: center;
-            margin-top: 100px;
-            font-size: 2.5rem;
-            overflow: hidden; /* Hide overflow for typing effect */
-            white-space: nowrap; /* Keep text in one line */
-            border-right: 2px solid #00ff88; /* Cursor effect */
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #00ff88; }
-        }
     </style>
 </head>
 <body>
@@ -114,37 +107,36 @@
         </div>
     </nav>
 
-    <!-- Cool Intro Animation -->
-    <div class="intro glow">
-        Welcome to S-Hub Scripts
-    </div>
-
-    <!-- Sound Effect for Intro -->
-    <audio id="typingSound" src="typing-sound.mp3" loop></audio>
-
     <!-- Main Content -->
     <div class="container mt-4">
-        <div class="download-section">
-            <h2 class="text-center glow">Download Roblox Scripts</h2>
-            <p class="text-center">Copy the scripts below and use them in Roblox:</p>
+        <div class="community-section">
+            <h1 class="text-center glow">Community Scripts</h1>
+            <p class="text-center">Submit and explore scripts shared by the community!</p>
 
-            <!-- Script Cards -->
+            <!-- Script Submission Form -->
             <div class="script-card">
-                <h3>The Strongest Battleground - Invisible GUI</h3>
-                <p>Become invisible in The Strongest Battleground with this script.</p>
-                <textarea id="script1" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/TSB-SCRIPTS/refs/heads/main/INVISIBLE%20GUI"))()
-                </textarea>
-                <button class="copy-btn mt-2" onclick="copyScript('script1')">Copy Script</button>
+                <h3>Submit Your Script</h3>
+                <form id="scriptForm">
+                    <div class="mb-3">
+                        <label for="scriptName" class="form-label">Script Name</label>
+                        <input type="text" class="form-control" id="scriptName" placeholder="Enter script name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="scriptDescription" class="form-label">Script Description</label>
+                        <textarea class="form-control" id="scriptDescription" rows="3" placeholder="Enter script description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="scriptCode" class="form-label">Script Code</label>
+                        <textarea class="form-control" id="scriptCode" rows="5" placeholder="Paste your script code here" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Script</button>
+                </form>
             </div>
 
-            <div class="script-card">
-                <h3>Slap Battles Script</h3>
-                <p>Dominate Slap Battles with this powerful script.</p>
-                <textarea id="script2" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/slapbattles/refs/heads/main/slap-battles"))()
-                </textarea>
-                <button class="copy-btn mt-2" onclick="copyScript('script2')">Copy Script</button>
+            <!-- Display Community Scripts -->
+            <div id="communityScripts" class="mt-4">
+                <h3>Community Scripts</h3>
+                <!-- Scripts will be dynamically added here -->
             </div>
         </div>
     </div>
@@ -156,25 +148,42 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/slapbattle
 
     <!-- Bootstrap JS (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Copy Script Function -->
+    <!-- Script Submission Logic -->
     <script>
-        function copyScript(id) {
-            const scriptText = document.getElementById(id);
-            scriptText.select();
-            document.execCommand('copy');
+        const scriptForm = document.getElementById('scriptForm');
+        const communityScripts = document.getElementById('communityScripts');
+
+        scriptForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const scriptName = document.getElementById('scriptName').value;
+            const scriptDescription = document.getElementById('scriptDescription').value;
+            const scriptCode = document.getElementById('scriptCode').value;
+
+            // Create a new script card
+            const scriptCard = document.createElement('div');
+            scriptCard.className = 'script-card';
+            scriptCard.innerHTML = `
+                <h3>${scriptName}</h3>
+                <p>${scriptDescription}</p>
+                <textarea readonly class="form-control bg-dark text-light" rows="5" style="resize: none;">${scriptCode}</textarea>
+                <button class="submit-btn mt-2" onclick="copyScript(this)">Copy Script</button>
+            `;
+
+            // Add the script card to the community scripts section
+            communityScripts.appendChild(scriptCard);
+
+            // Clear the form
+            scriptForm.reset();
+        });
+
+        // Copy script function
+        function copyScript(button) {
+            const scriptCode = button.previousElementSibling.value;
+            navigator.clipboard.writeText(scriptCode);
             alert('Script copied to clipboard!');
         }
-
-        // Play typing sound during intro animation
-        const typingSound = document.getElementById('typingSound');
-        typingSound.play();
-
-        // Stop sound after intro animation (3 seconds)
-        setTimeout(() => {
-            typingSound.pause();
-        }, 3000);
     </script>
 </body>
-</html>git add index.html typing-sound.mp3
-git commit -m "Updated index.html with Community Scripts link and intro sound"
-git push origin main
+</html>
