@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Scripts - S-Hub Scripts</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #00ff88; /* Updated green color */
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background-color: #000 !important;
+            border-bottom: 2px solid #00ff88; /* Updated green color */
+        }
+        .navbar-brand {
+            color: #00ff88 !important; /* Updated green color */
+            font-weight: bold;
+            text-shadow: 0 0 5px #00ff88; /* Updated green color */
+        }
+        .scripts-section {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #00ff88; /* Updated green color */
+            box-shadow: 0 0 10px #00ff88; /* Updated green color */
+            margin-top: 20px;
+        }
+        .script-card {
+            background: #1a1a1a;
+            border: 1px solid #00ff88; /* Updated green color */
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 0 10px #00ff88; /* Updated green color */
+        }
+        .script-card h3 {
+            color: #00ff88; /* Updated green color */
+            text-shadow: 0 0 5px #00ff88; /* Updated green color */
+        }
+        .script-card p {
+            color: #00ff88; /* Updated green color */
+        }
+        .copy-btn {
+            background-color: #000;
+            color: #00ff88; /* Updated green color */
+            border: 1px solid #00ff88; /* Updated green color */
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .copy-btn:hover {
+            background-color: #00ff88; /* Updated green color */
+            color: #000;
+            box-shadow: 0 0 10px #00ff88; /* Updated green color */
+        }
+        footer {
+            background-color: #000;
+            color: #00ff88; /* Updated green color */
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+            border-top: 2px solid #00ff88; /* Updated green color */
+        }
+        h1, h2, p {
+            text-shadow: 0 0 5px #00ff88; /* Updated green color */
+        }
+        .glow {
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88, 0 0 20px #00ff88; /* Updated green color */
+            }
+            to {
+                text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88; /* Updated green color */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand glow" href="index.html">S-Hub Scripts</a>
+            <a class="navbar-brand glow" href="other-scripts.html">Other Scripts</a>
+            <a class="navbar-brand glow" href="executors.html">Executors</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="scripts-section">
+            <h1 class="text-center glow">Other Scripts</h1>
+            <p class="text-center">Here are some additional scripts you can use. Execute at your own risk!</p>
+
+            <!-- Script Cards -->
+            <div class="script-card">
+                <h3>Forge-Hub (EXECUTE AT YOUR OWN RISK!)</h3>
+                <p>This script contains an IP logger. Use with caution.</p>
+                <textarea id="script1" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Skzuppy/forge-hub/main/loader.lua"))()
+                </textarea>
+                <button class="copy-btn mt-2" onclick="copyScript('script1')">Copy Script</button>
+            </div>
+
+            <div class="script-card">
+                <h3>Universal Script (Keyless Dex)</h3>
+                <p>A universal script with a keyless Dex.</p>
+                <textarea id="script2" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Keyless-dex-working-new-25658"))()
+                </textarea>
+                <button class="copy-btn mt-2" onclick="copyScript('script2')">Copy Script</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 S-Hub Scripts. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Copy Script Function -->
+    <script>
+        function copyScript(id) {
+            const scriptText = document.getElementById(id);
+            scriptText.select();
+            document.execCommand('copy');
+            alert('Script copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
