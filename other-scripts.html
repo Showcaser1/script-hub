@@ -94,6 +94,7 @@
             <a class="navbar-brand glow" href="index.html">S-Hub Scripts</a>
             <a class="navbar-brand glow" href="other-scripts.html">Other Scripts</a>
             <a class="navbar-brand glow" href="executors.html">Executors</a>
+            <a class="navbar-brand glow" href="credits.html">Credits</a>
         </div>
     </nav>
 
@@ -105,21 +106,94 @@
 
             <!-- Script Cards -->
             <div class="script-card">
-                <h3>Forge-Hub (EXECUTE AT YOUR OWN RISK!)</h3>
-                <p>This script contains an IP logger. Use with caution.</p>
+                <h3>Speed Hub</h3>
+                <p>A hub for speed-related scripts.</p>
                 <textarea id="script1" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Skzuppy/forge-hub/main/loader.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
                 </textarea>
                 <button class="copy-btn mt-2" onclick="copyScript('script1')">Copy Script</button>
             </div>
 
             <div class="script-card">
-                <h3>Universal Script (Keyless Dex)</h3>
-                <p>A universal script with a keyless Dex.</p>
+                <h3>Infinite Yield</h3>
+                <p>A powerful admin script for Roblox.</p>
                 <textarea id="script2" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
-loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Keyless-dex-working-new-25658"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
                 </textarea>
                 <button class="copy-btn mt-2" onclick="copyScript('script2')">Copy Script</button>
+            </div>
+
+            <div class="script-card">
+                <h3>Universal ESP</h3>
+                <p>An ESP script for Roblox games.</p>
+                <textarea id="script3" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
+                </textarea>
+                <button class="copy-btn mt-2" onclick="copyScript('script3')">Copy Script</button>
+            </div>
+
+            <div class="script-card">
+                <h3>TP Player</h3>
+                <p>A script to teleport to players.</p>
+                <textarea id="script4" readonly class="form-control bg-dark text-light" rows="5" style="resize: none;">
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Tp Player", "DarkTheme")
+
+local Tab = Window:NewTab("Misc")
+local Section = Tab:NewSection("Teleport")
+players = {}
+
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+   table.insert(players,v.Name)
+end
+
+Section:NewDropdown("Select Player", " ", players, function(abc)
+    Select = abc
+end)
+
+local rootpart = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+
+Section:NewButton("Refresh", " ", function()
+    table.clear(players)
+    for i, v in ipairs(game.Players:GetChildren()) do
+        table.insert(players, v.Name)
+    end
+end)
+
+Section:NewButton("Teleport", " ", function()
+   if Select then
+       rootpart.CFrame = game:GetService("Players"):FindFirstChild(Select).Character.HumanoidRootPart.CFrame
+   end
+end)
+
+Section:NewTextBox("TP to Player", "Tp to player", function(name)
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if string.sub(player.DisplayName:lower(), 1, #name) == name:lower() or
+           string.sub(player.Name:lower(), 1, #name) == name:lower() then
+            plr = player
+            break 
+        end
+    end
+
+    if plr then
+        local rootpart = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        local plrootpart = plr.Character:FindFirstChild("HumanoidRootPart")
+        if rootpart then
+            rootpart.CFrame = plrootpart.CFrame * CFrame.new(0, 0, -5)
+        end
+    end
+end)
+                </textarea>
+                <button class="copy-btn mt-2" onclick="copyScript('script4')">Copy Script</button>
+            </div>
+
+            <div class="script-card">
+                <h3>Slap Battles (Eternal Bob)</h3>
+                <p>A script for Slap Battles.</p>
+                <textarea id="script5" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/Rob/main/Rob"))()
+                </textarea>
+                <button class="copy-btn mt-2" onclick="copyScript('script5')">Copy Script</button>
             </div>
         </div>
     </div>
