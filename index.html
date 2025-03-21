@@ -85,23 +85,20 @@
                 text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88; /* Updated green color */
             }
         }
-        /* Intro Animation */
-        .intro {
-            text-align: center;
-            margin-top: 100px;
-            font-size: 2.5rem;
-            overflow: hidden; /* Hide overflow for typing effect */
-            white-space: nowrap; /* Keep text in one line */
-            border-right: 2px solid #00ff88; /* Cursor effect */
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        /* Search Bar */
+        .search-bar {
+            margin-bottom: 20px;
         }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #00ff88;
+            border-radius: 5px;
+            background-color: #000;
+            color: #00ff88;
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #00ff88; }
+        .search-bar input::placeholder {
+            color: #00ff88;
         }
     </style>
 </head>
@@ -130,23 +127,30 @@
             <h2 class="text-center glow">Download Roblox Scripts</h2>
             <p class="text-center">Copy the scripts below and use them in Roblox:</p>
 
-            <!-- Script Cards -->
-            <div class="script-card">
-                <h3>The Strongest Battleground - Invisible GUI</h3>
-                <p>Become invisible in The Strongest Battleground with this script.</p>
-                <textarea id="script1" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/TSB-SCRIPTS/refs/heads/main/INVISIBLE%20GUI"))()
-                </textarea>
-                <button class="copy-btn mt-2" onclick="copyScript('script1')">Copy Script</button>
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search scripts by name..." oninput="filterScripts()">
             </div>
 
-            <div class="script-card">
-                <h3>Slap Battles Script</h3>
-                <p>Dominate Slap Battles with this powerful script.</p>
-                <textarea id="script2" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+            <!-- Script Cards -->
+            <div id="scriptList">
+                <div class="script-card" data-name="The Strongest Battleground - Invisible GUI">
+                    <h3>The Strongest Battleground - Invisible GUI</h3>
+                    <p>Become invisible in The Strongest Battleground with this script.</p>
+                    <textarea id="script1" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/TSB-SCRIPTS/refs/heads/main/INVISIBLE%20GUI"))()
+                    </textarea>
+                    <button class="copy-btn mt-2" onclick="copyScript('script1')">Copy Script</button>
+                </div>
+
+                <div class="script-card" data-name="Slap Battles Script">
+                    <h3>Slap Battles Script</h3>
+                    <p>Dominate Slap Battles with this powerful script.</p>
+                    <textarea id="script2" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/slapbattles/refs/heads/main/slap-battles"))()
-                </textarea>
-                <button class="copy-btn mt-2" onclick="copyScript('script2')">Copy Script</button>
+                    </textarea>
+                    <button class="copy-btn mt-2" onclick="copyScript('script2')">Copy Script</button>
+                </div>
             </div>
         </div>
     </div>
@@ -165,6 +169,21 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/slapbattle
             scriptText.select();
             document.execCommand('copy');
             alert('Script copied to clipboard!');
+        }
+
+        // Filter scripts based on search input
+        function filterScripts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const scriptCards = document.querySelectorAll('.script-card');
+
+            scriptCards.forEach(card => {
+                const scriptName = card.getAttribute('data-name').toLowerCase();
+                if (scriptName.includes(searchInput)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
 
         // Play typing sound during intro animation
