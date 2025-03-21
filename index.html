@@ -10,46 +10,46 @@
     <style>
         body {
             background-color: #0d0d0d;
-            color: #00ff00;
+            color: #00ff88; /* Updated green color */
             font-family: 'Courier New', monospace;
             overflow-x: hidden;
         }
         .navbar {
             background-color: #000 !important;
-            border-bottom: 2px solid #00ff00;
+            border-bottom: 2px solid #00ff88; /* Updated green color */
         }
         .navbar-brand {
-            color: #00ff00 !important;
+            color: #00ff88 !important; /* Updated green color */
             font-weight: bold;
-            text-shadow: 0 0 5px #00ff00;
+            text-shadow: 0 0 5px #00ff88; /* Updated green color */
         }
         .download-section {
             background: #1a1a1a;
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid #00ff00;
-            box-shadow: 0 0 10px #00ff00;
+            border: 1px solid #00ff88; /* Updated green color */
+            box-shadow: 0 0 10px #00ff88; /* Updated green color */
             margin-top: 20px;
         }
         .script-card {
             background: #1a1a1a;
-            border: 1px solid #00ff00;
+            border: 1px solid #00ff88; /* Updated green color */
             border-radius: 10px;
             padding: 15px;
             margin: 10px 0;
-            box-shadow: 0 0 10px #00ff00;
+            box-shadow: 0 0 10px #00ff88; /* Updated green color */
         }
         .script-card h3 {
-            color: #00ff00;
-            text-shadow: 0 0 5px #00ff00;
+            color: #00ff88; /* Updated green color */
+            text-shadow: 0 0 5px #00ff88; /* Updated green color */
         }
         .script-card p {
-            color: #00ff00;
+            color: #00ff88; /* Updated green color */
         }
         .copy-btn {
             background-color: #000;
-            color: #00ff00;
-            border: 1px solid #00ff00;
+            color: #00ff88; /* Updated green color */
+            border: 1px solid #00ff88; /* Updated green color */
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
@@ -59,30 +59,30 @@
             cursor: pointer;
         }
         .copy-btn:hover {
-            background-color: #00ff00;
+            background-color: #00ff88; /* Updated green color */
             color: #000;
-            box-shadow: 0 0 10px #00ff00;
+            box-shadow: 0 0 10px #00ff88; /* Updated green color */
         }
         footer {
             background-color: #000;
-            color: #00ff00;
+            color: #00ff88; /* Updated green color */
             text-align: center;
             padding: 10px 0;
             margin-top: 20px;
-            border-top: 2px solid #00ff00;
+            border-top: 2px solid #00ff88; /* Updated green color */
         }
         h1, h2, p {
-            text-shadow: 0 0 5px #00ff00;
+            text-shadow: 0 0 5px #00ff88; /* Updated green color */
         }
         .glow {
             animation: glow 1.5s infinite alternate;
         }
         @keyframes glow {
             from {
-                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+                text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88, 0 0 20px #00ff88; /* Updated green color */
             }
             to {
-                text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+                text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88; /* Updated green color */
             }
         }
         /* Intro Animation */
@@ -92,7 +92,7 @@
             font-size: 2.5rem;
             overflow: hidden; /* Hide overflow for typing effect */
             white-space: nowrap; /* Keep text in one line */
-            border-right: 2px solid #00ff00; /* Cursor effect */
+            border-right: 2px solid #00ff88; /* Cursor effect */
             animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
         }
         @keyframes typing {
@@ -101,7 +101,7 @@
         }
         @keyframes blink-caret {
             from, to { border-color: transparent; }
-            50% { border-color: #00ff00; }
+            50% { border-color: #00ff88; }
         }
     </style>
 </head>
@@ -110,7 +110,6 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand glow" href="index.html">S-Hub Scripts</a>
-            <a class="navbar-brand glow" href="videos.html">YouTube Videos</a>
         </div>
     </nav>
 
@@ -118,6 +117,9 @@
     <div class="intro glow">
         Welcome to S-Hub Scripts
     </div>
+
+    <!-- Sound Effect for Intro -->
+    <audio id="typingSound" src="typing-sound.mp3" loop></audio>
 
     <!-- Main Content -->
     <div class="container mt-4">
@@ -148,7 +150,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/slapbattle
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2023 S-Hub Scripts. All rights reserved.</p>
+        <p>&copy; 2025 S-Hub Scripts. All rights reserved.</p>
     </footer>
 
     <!-- Bootstrap JS (Optional) -->
@@ -161,6 +163,15 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/slapbattle
             document.execCommand('copy');
             alert('Script copied to clipboard!');
         }
+
+        // Play typing sound during intro animation
+        const typingSound = document.getElementById('typingSound');
+        typingSound.play();
+
+        // Stop sound after intro animation (3 seconds)
+        setTimeout(() => {
+            typingSound.pause();
+        }, 3000);
     </script>
 </body>
 </html>

