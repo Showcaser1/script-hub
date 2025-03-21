@@ -85,6 +85,21 @@
                 text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88; /* Updated green color */
             }
         }
+        /* Search Bar */
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #00ff88;
+            border-radius: 5px;
+            background-color: #000;
+            color: #00ff88;
+        }
+        .search-bar input::placeholder {
+            color: #00ff88;
+        }
     </style>
 </head>
 <body>
@@ -104,38 +119,44 @@
             <h1 class="text-center glow">Other Scripts</h1>
             <p class="text-center">Here are some additional scripts you can use. Execute at your own risk!</p>
 
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search scripts by name..." oninput="filterScripts()">
+            </div>
+
             <!-- Script Cards -->
-            <div class="script-card">
-                <h3>Speed Hub</h3>
-                <p>A hub for speed-related scripts.</p>
-                <textarea id="script1" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+            <div id="scriptList">
+                <div class="script-card" data-name="Speed Hub">
+                    <h3>Speed Hub</h3>
+                    <p>A hub for speed-related scripts.</p>
+                    <textarea id="script1" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-                </textarea>
-                <button class="copy-btn mt-2" onclick="copyScript('script1')">Copy Script</button>
-            </div>
+                    </textarea>
+                    <button class="copy-btn mt-2" onclick="copyScript('script1')">Copy Script</button>
+                </div>
 
-            <div class="script-card">
-                <h3>Infinite Yield</h3>
-                <p>A powerful admin script for Roblox.</p>
-                <textarea id="script2" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+                <div class="script-card" data-name="Infinite Yield">
+                    <h3>Infinite Yield</h3>
+                    <p>A powerful admin script for Roblox.</p>
+                    <textarea id="script2" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-                </textarea>
-                <button class="copy-btn mt-2" onclick="copyScript('script2')">Copy Script</button>
-            </div>
+                    </textarea>
+                    <button class="copy-btn mt-2" onclick="copyScript('script2')">Copy Script</button>
+                </div>
 
-            <div class="script-card">
-                <h3>Universal ESP</h3>
-                <p>An ESP script for Roblox games.</p>
-                <textarea id="script3" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+                <div class="script-card" data-name="Universal ESP">
+                    <h3>Universal ESP</h3>
+                    <p>An ESP script for Roblox games.</p>
+                    <textarea id="script3" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))();
-                </textarea>
-                <button class="copy-btn mt-2" onclick="copyScript('script3')">Copy Script</button>
-            </div>
+                    </textarea>
+                    <button class="copy-btn mt-2" onclick="copyScript('script3')">Copy Script</button>
+                </div>
 
-            <div class="script-card">
-                <h3>TP Player</h3>
-                <p>A script to teleport to players.</p>
-                <textarea id="script4" readonly class="form-control bg-dark text-light" rows="5" style="resize: none;">
+                <div class="script-card" data-name="TP Player">
+                    <h3>TP Player</h3>
+                    <p>A script to teleport to players.</p>
+                    <textarea id="script4" readonly class="form-control bg-dark text-light" rows="5" style="resize: none;">
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Tp Player", "DarkTheme")
 
@@ -183,17 +204,18 @@ Section:NewTextBox("TP to Player", "Tp to player", function(name)
         end
     end
 end)
-                </textarea>
-                <button class="copy-btn mt-2" onclick="copyScript('script4')">Copy Script</button>
-            </div>
+                    </textarea>
+                    <button class="copy-btn mt-2" onclick="copyScript('script4')">Copy Script</button>
+                </div>
 
-            <div class="script-card">
-                <h3>Slap Battles (Eternal Bob)</h3>
-                <p>A script for Slap Battles.</p>
-                <textarea id="script5" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
+                <div class="script-card" data-name="Slap Battles (Eternal Bob)">
+                    <h3>Slap Battles (Eternal Bob)</h3>
+                    <p>A script for Slap Battles.</p>
+                    <textarea id="script5" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/Rob/main/Rob"))()
-                </textarea>
-                <button class="copy-btn mt-2" onclick="copyScript('script5')">Copy Script</button>
+                    </textarea>
+                    <button class="copy-btn mt-2" onclick="copyScript('script5')">Copy Script</button>
+                </div>
             </div>
         </div>
     </div>
@@ -212,6 +234,21 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Dusty1234567890/Rob/m
             scriptText.select();
             document.execCommand('copy');
             alert('Script copied to clipboard!');
+        }
+
+        // Filter scripts based on search input
+        function filterScripts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const scriptCards = document.querySelectorAll('.script-card');
+
+            scriptCards.forEach(card => {
+                const scriptName = card.getAttribute('data-name').toLowerCase();
+                if (scriptName.includes(searchInput)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>
