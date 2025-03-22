@@ -3,257 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S-Hub Scripts</title>
+    <title>Blackware - Exploit Hub</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         /* General Styles */
         body {
-            background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-            color: #00ff88;
-            font-family: 'Orbitron', sans-serif;
+            background: #0d0d0d;
+            color: #ffffff;
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
-            transition: background 0.5s ease;
         }
 
-        /* Navigation Bar */
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid #00ff88;
-        }
-        .navbar-brand {
-            color: #00ff88 !important;
-            font-weight: bold;
-            text-shadow: 0 0 5px #00ff88;
-            transition: all 0.3s ease;
-        }
-        .navbar-brand:hover {
-            color: #00cc66 !important;
-            text-shadow: 0 0 10px #00cc66;
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Intro Animation */
-        .intro {
+        /* Header with Animated Text */
+        .header {
             text-align: center;
-            margin-top: 100px;
-            font-size: 2.5rem;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid #00ff88;
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #00ff88; }
+            padding: 50px 0;
+            background: #1a1a1a;
+            border-bottom: 2px solid #bb86fc;
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
         }
 
-        /* Background Change Section */
-        .background-controls {
-            margin: 20px auto;
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            color: #bb86fc;
+            animation: glow 2s infinite alternate, fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc;
+            }
+            100% {
+                text-shadow: 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 30px #bb86fc;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #1a1a1a;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            border-right: 2px solid #bb86fc;
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar h2 {
+            color: #bb86fc;
             text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            animation: fadeIn 1s ease-in-out;
         }
-        .background-controls button {
-            background-color: #000;
-            color: #00ff88;
-            border: 1px solid #00ff88;
-            padding: 10px 20px;
+
+        .sidebar a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px 0;
             border-radius: 5px;
-            margin: 5px;
-            cursor: pointer;
             transition: all 0.3s ease;
+            animation: fadeIn 1s ease-in-out;
         }
-        .background-controls button:hover {
-            background-color: #00ff88;
-            color: #000;
-            box-shadow: 0 0 15px #00ff88;
-        }
-        .background-controls input[type="file"] {
-            display: none;
-        }
-        .background-controls label {
-            background-color: #000;
-            color: #00ff88;
-            border: 1px solid #00ff88;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .background-controls label:hover {
-            background-color: #00ff88;
-            color: #000;
-            box-shadow: 0 0 15px #00ff88;
+
+        .sidebar a:hover {
+            background: #bb86fc;
+            color: #0d0d0d;
+            transform: translateX(10px);
         }
 
         /* Main Content */
-        .download-section {
-            background: rgba(26, 26, 26, 0.8);
-            backdrop-filter: blur(10px);
+        .main-content {
+            margin-left: 250px;
             padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #00ff88;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-            margin-top: 20px;
-        }
-
-        /* Script Cards */
-        .script-card {
-            background: rgba(26, 26, 26, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid #00ff88;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 15px 0;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .script-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-        }
-        .script-card h3 {
-            color: #00ff88;
-            text-shadow: 0 0 5px #00ff88;
-        }
-        .script-card p {
-            color: #00ff88;
-        }
-
-        /* Copy Button */
-        .copy-btn {
-            background-color: #000;
-            color: #00ff88;
-            border: 1px solid #00ff88;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px 0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .copy-btn:hover {
-            background-color: #00ff88;
-            color: #000;
-            box-shadow: 0 0 15px #00ff88;
+            animation: fadeIn 1s ease-in-out;
         }
 
         /* Search Bar */
         .search-bar {
             margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
         }
+
         .search-bar input {
             width: 100%;
             padding: 10px;
-            border: 1px solid #00ff88;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #bb86fc;
             border-radius: 5px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #00ff88;
-            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
         }
+
+        .search-bar input:focus {
+            border-color: #9a6fd8;
+            box-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
+        }
+
         .search-bar input::placeholder {
-            color: #00ff88;
+            color: #bb86fc;
             opacity: 0.7;
+        }
+
+        /* Script Cards */
+        .script-card {
+            background: #1a1a1a;
+            border: 1px solid #bb86fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+
+        .script-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.5);
+        }
+
+        .script-card h3 {
+            color: #bb86fc;
+            margin-bottom: 10px;
+        }
+
+        .script-card p {
+            color: #ffffff;
+        }
+
+        .script-card textarea {
+            width: 100%;
+            background: #0d0d0d;
+            color: #ffffff;
+            border: 1px solid #bb86fc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            resize: none;
+            transition: all 0.3s ease;
+        }
+
+        .script-card textarea:focus {
+            border-color: #9a6fd8;
+            box-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            background: #bb86fc;
+            color: #0d0d0d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #9a6fd8;
+            transform: scale(1.05);
         }
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            color: #00ff88;
             text-align: center;
-            padding: 15px 0;
-            margin-top: 30px;
-            border-top: 2px solid #00ff88;
+            padding: 20px;
+            background: #1a1a1a;
+            border-top: 2px solid #bb86fc;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
         }
 
-        /* Glow Effect */
-        .glow {
-            animation: glow 1.5s infinite alternate;
+        footer p {
+            color: #ffffff;
+            margin: 0;
         }
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88, 0 0 20px #00ff88;
+
+        /* Animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            to {
-                text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand glow" href="index.html">S-Hub Scripts</a>
-            <a class="navbar-brand glow" href="other-scripts.html">Other Scripts</a>
-            <a class="navbar-brand glow" href="executors.html">Executors</a>
-            <a class="navbar-brand glow" href="credits.html">Credits</a>
-        </div>
-    </nav>
-
-    <!-- Background Change Controls -->
-    <div class="background-controls">
-        <button onclick="changeBackground('default')">Default Background</button>
-        <button onclick="changeBackground('gradient')">Gradient Background</button>
-        <label for="uploadImage">Upload Background</label>
-        <input type="file" id="uploadImage" accept="image/*" onchange="uploadBackground(event)">
+    <!-- Header -->
+    <div class="header">
+        <h1>Blackware</h1>
     </div>
 
-    <!-- Cool Intro Animation -->
-    <div class="intro glow">
-        Welcome to S-Hub Scripts
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <a href="index.html">Home</a>
+        <a href="other-scripts.html">Other Scripts</a>
+        <a href="executors.html">Executors</a>
+        <a href="credits.html">Credits</a>
     </div>
-
-    <!-- Sound Effect for Intro -->
-    <audio id="typingSound" src="typing-sound.mp3" loop></audio>
 
     <!-- Main Content -->
-    <div class="container mt-4">
-        <div class="download-section">
-            <h2 class="text-center glow">Download Roblox Scripts</h2>
-            <p class="text-center">Copy the scripts below and use them in Roblox:</p>
+    <div class="main-content">
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search scripts by name..." oninput="filterScripts()">
+        </div>
 
-            <!-- Search Bar -->
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search scripts by name..." oninput="filterScripts()">
+        <!-- Script Cards -->
+        <div id="scriptList">
+            <div class="script-card" data-name="Speed Hub">
+                <h3>Speed Hub</h3>
+                <p>A hub for speed-related scripts.</p>
+                <textarea id="script1" readonly rows="3">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+                </textarea>
+                <button class="copy-btn" onclick="copyScript('script1')">Copy Script</button>
             </div>
 
-            <!-- Script Cards -->
-            <div id="scriptList">
-                <div class="script-card" data-name="The Strongest Battleground - Invisible GUI">
-                    <h3>The Strongest Battleground - Invisible GUI</h3>
-                    <p>Become invisible in The Strongest Battleground with this script.</p>
-                    <textarea id="script1" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/TSB-SCRIPTS/refs/heads/main/INVISIBLE%20GUI"))()
-                    </textarea>
-                    <button class="copy-btn mt-2" onclick="copyScript('script1')">Copy Script</button>
-                </div>
-
-                <div class="script-card" data-name="Slap Battles Script">
-                    <h3>Slap Battles Script</h3>
-                    <p>Dominate Slap Battles with this powerful script.</p>
-                    <textarea id="script2" readonly class="form-control bg-dark text-light" rows="3" style="resize: none;">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/slapbattles/refs/heads/main/slap-battles"))()
-                    </textarea>
-                    <button class="copy-btn mt-2" onclick="copyScript('script2')">Copy Script</button>
-                </div>
+            <div class="script-card" data-name="Infinite Yield">
+                <h3>Infinite Yield</h3>
+                <p>A powerful admin script for Roblox.</p>
+                <textarea id="script2" readonly rows="3">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+                </textarea>
+                <button class="copy-btn" onclick="copyScript('script2')">Copy Script</button>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 S-Hub Scripts. All rights reserved.</p>
-    </footer>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Blackware. All rights reserved.</p>
+        </footer>
+    </div>
 
     <!-- Bootstrap JS (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -279,41 +293,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Showcaser1/slapbattle
                     card.style.display = 'none';
                 }
             });
-        }
-
-        // Play typing sound during intro animation
-        const typingSound = document.getElementById('typingSound');
-        typingSound.play();
-
-        // Stop sound after intro animation (3 seconds)
-        setTimeout(() => {
-            typingSound.pause();
-        }, 3000);
-
-        // Function to change background
-        function changeBackground(type) {
-            const body = document.body;
-            if (type === 'default') {
-                body.style.background = 'linear-gradient(135deg, #0d0d0d, #1a1a1a)';
-                body.style.backgroundImage = 'none';
-            } else if (type === 'gradient') {
-                body.style.background = 'linear-gradient(135deg, #1a1a1a, #0d0d0d)';
-                body.style.backgroundImage = 'none';
-            }
-        }
-
-        // Function to upload custom background
-        function uploadBackground(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.body.style.backgroundImage = `url(${e.target.result})`;
-                    document.body.style.backgroundSize = 'cover';
-                    document.body.style.backgroundPosition = 'center';
-                };
-                reader.readAsDataURL(file);
-            }
         }
     </script>
 </body>
