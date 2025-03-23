@@ -9,7 +9,46 @@
     },
     {
         "name": "esp (open source)",
-        "code": "loadstring(game:HttpGet("https://pastebin.com/iP5Swf9a/",true))()"
-      }
+        "code": "loadstring(game:HttpGet('https://pastebin.com/raw/iP5Swf9a'))()"
+    },
+    {
+        "name": "Auto Full Sword",
+        "code": "loadstring(game:HttpGet('https://raw.githubusercontent.com/Jwjshdiwj/Auto-Full-Sword/refs/heads/main/Full%20Sword'))();"
+    },
+    {
+        "name": "Merciful Absurdity",
+        "code": "loadstring(game:HttpGet('https://raw.githubusercontent.com/badass1ia/Merciful/refs/heads/main/Absurdity111'))()"
+    },
+    {
+        "name": "Speed Hub X (Game-Specific)",
+        "code": "local Games = loadstring(game:HttpGet('https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/GameList.lua'))();\nfor PlaceID, Execute in pairs(Games) do\n    if PlaceID == game.PlaceId then\n        loadstring(game:HttpGet(Execute))()\n    end\nend"
+    },
+    {
+        "name": "Pastebin Script",
+        "code": "loadstring(game:HttpGet('https://pastebin.com/raw/FWwdST5Y'))()"
+    },
+    {
+        "name": "Luarmor Loader",
+        "code": "loadstring(game:HttpGet('https://api.luarmor.net/files/v3/loaders/9b72c93a476b7824899492f2ede56297.lua'))()"
+    },
+    {
+        "name": "ThundarZ Welcome",
+        "code": "loadstring(game:HttpGet('https://raw.githubusercontent.com/ThundarZ/Welcome/refs/heads/main/Main/Loader/AllGame.lua'))()"
+    },
+    {
+        "name": "User Creation",
+        "code": "loadstring(game:HttpGet('https://raw.githubusercontent.com/1price/usercreation/refs/heads/main/UserCreation.lua', true))()"
+    },
+    {
+        "name": "Cartel Script",
+        "code": "loadstring(game:HttpGet('https://raw.githubusercontent.com/JackyPoopoo/cartel/main/0000000000000000000000000000000000000000000000000'))()"
+    },
+    {
+        "name": "Bonk Hub Loader",
+        "code": "loadstring(game:HttpGet('https://bonkhubloader.netlify.app',true))()"
+    },
+    {
+        "name": "Expedition Antarctica",
+        "code": "loadstring(game:HttpGet('https://raw.githubusercontent.com/SirMorfin/Morfins-Mods/main/Expedition%20Antarctica'))()"
+    }
 ]
-
