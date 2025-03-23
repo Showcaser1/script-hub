@@ -234,15 +234,20 @@
 
         // Fetch and display scripts
         async function fetchScripts() {
-            const response = await fetch(scriptsUrl);
-            const scripts = await response.json();
-            const scriptList = document.getElementById('scriptList');
-            scriptList.innerHTML = scripts.map(script => `
-                <div class="section-card">
-                    <h3>${script.name}</h3>
-                    <pre>${script.code}</pre>
-                </div>
-            `).join('');
+            try {
+                const response = await fetch(scriptsUrl);
+                const scripts = await response.json();
+                const scriptList = document.getElementById('scriptList');
+                scriptList.innerHTML = scripts.map(script => `
+                    <div class="section-card">
+                        <h3>${script.name}</h3>
+                        <pre>${script.code}</pre>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error("Error fetching scripts:", error);
+                document.getElementById('scriptList').innerHTML = `<p>Failed to load scripts. Please try again later.</p>`;
+            }
         }
 
         // Submit script form

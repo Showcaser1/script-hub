@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Speed Hub",
+        "code": "loadstring(game:HttpGet('https://example.com/speed-hub.lua'))()"
+    },
+    {
+        "name": "Infinite Yield",
+        "code": "loadstring(game:HttpGet('https://example.com/infinite-yield.lua'))()"
+    }
+]
