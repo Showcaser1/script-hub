@@ -8,9 +8,20 @@
         "code": "loadstring(game:HttpGet('https://example.com/infinite-yield.lua'))()"
     },
     {
+<<<<<<< HEAD
         "name": "esp (open source)",
         "code": "loadstring(game:HttpGet('https://pastebin.com/raw/iP5Swf9a'))()"
       }
       
+=======
+        "name": "fiaepnifcaodaidadp0-sa",
+        "code": "fiaepnifcaodaidadp0-safiaepnifcaodaidadp0-safiaepnifcaodaidadp0-safiaepnifcaodaidadp0-safiaepnifcaodaidadp0-safiaepnifcaodaidadp0-safiaepnifcaodaidadp0-safiaepnifcaodaidadp0-safiaepnifcaodaidadp0-safiaepnifcaodaidadp0-sa"
+      },
+      {
+  "name": "esp (open sourse)",
+  "code": "loadstring(game:HttpGet(\"https://pastebin.com/iP5Swf9a\",true))()"
+      }
+
+>>>>>>> 99551913538ec1e5c7c4451af1dab6c967c57f85
 ]
 
