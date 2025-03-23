@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blackware - Exploit Hub</title>
+    <title>Community - Blackware</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
@@ -107,87 +107,43 @@
             animation: fadeIn 1s ease-in-out;
         }
 
-        /* Search Bar */
-        .search-bar {
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 10px;
-            background: #1a1a1a;
-            color: #ffffff;
-            border: 1px solid #bb86fc;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .search-bar input:focus {
-            border-color: #9a6fd8;
-            box-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
-        }
-
-        .search-bar input::placeholder {
-            color: #bb86fc;
-            opacity: 0.7;
-        }
-
-        /* Script Cards */
-        .script-card {
+        /* Section Cards */
+        .section-card {
             background: #1a1a1a;
             border: 1px solid #bb86fc;
             border-radius: 10px;
             padding: 20px;
             margin: 15px 0;
+            box-shadow: 0 0 15px rgba(187, 134, 252, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 0.5s ease-in-out;
         }
 
-        .script-card:hover {
+        .section-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 0 20px rgba(187, 134, 252, 0.5);
         }
 
-        .script-card h3 {
+        .section-card h3 {
             color: #bb86fc;
             margin-bottom: 10px;
         }
 
-        .script-card p {
+        .section-card p {
             color: #ffffff;
         }
 
-        .script-card textarea {
-            width: 100%;
-            background: #0d0d0d;
-            color: #ffffff;
-            border: 1px solid #bb86fc;
-            border-radius: 5px;
-            padding: 10px;
-            margin-top: 10px;
-            resize: none;
-            transition: all 0.3s ease;
-        }
-
-        .script-card textarea:focus {
-            border-color: #9a6fd8;
-            box-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
-        }
-
-        /* Copy Button */
-        .copy-btn {
+        /* Buttons */
+        .btn-primary {
             background: #bb86fc;
             color: #0d0d0d;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
             transition: all 0.3s ease;
         }
 
-        .copy-btn:hover {
+        .btn-primary:hover {
             background: #9a6fd8;
             transform: scale(1.05);
         }
@@ -233,68 +189,79 @@
         <a href="other-scripts.html">Other Scripts</a>
         <a href="executors.html">Executors</a>
         <a href="credits.html">Credits</a>
-        <a href="community.html">Community</a> <!-- Add this line -->
+        <a href="social.html">Social</a>
+        <a href="community.html">Community</a>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Search Bar -->
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search scripts by name..." oninput="filterScripts()">
-        </div>
-
-        <!-- Script Cards -->
-        <div id="scriptList">
-            <div class="script-card" data-name="Speed Hub">
-                <h3>Speed Hub</h3>
-                <p>A hub for speed-related scripts.</p>
-                <textarea id="script1" readonly rows="3">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-                </textarea>
-                <button class="copy-btn" onclick="copyScript('script1')">Copy Script</button>
+        <div class="container">
+            <!-- Submit Script Form -->
+            <div class="section-card">
+                <h3>Submit Your Script</h3>
+                <form id="scriptForm">
+                    <div class="mb-3">
+                        <label for="scriptName" class="form-label">Script Name</label>
+                        <input type="text" class="form-control" id="scriptName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="scriptCode" class="form-label">Script Code</label>
+                        <textarea class="form-control" id="scriptCode" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Submit Script</button>
+                </form>
             </div>
 
-            <div class="script-card" data-name="Infinite Yield">
-                <h3>Infinite Yield</h3>
-                <p>A powerful admin script for Roblox.</p>
-                <textarea id="script2" readonly rows="3">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-                </textarea>
-                <button class="copy-btn" onclick="copyScript('script2')">Copy Script</button>
+            <!-- Community Scripts -->
+            <div class="section-card">
+                <h3>Community Scripts</h3>
+                <div id="scriptList"></div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2025 Blackware. All rights reserved.</p>
-        </footer>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Blackware. All rights reserved.</p>
+    </footer>
 
     <!-- Bootstrap JS (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Copy Script Function -->
+    <!-- Custom JS -->
     <script>
-        function copyScript(id) {
-            const scriptText = document.getElementById(id);
-            scriptText.select();
-            document.execCommand('copy');
-            alert('Script copied to clipboard!');
+        // URL to the public JSON file
+        const scriptsUrl = "https://raw.githubusercontent.com/showcaser1/script-hub/main/scripts.json";
+
+        // Fetch and display scripts
+        async function fetchScripts() {
+            const response = await fetch(scriptsUrl);
+            const scripts = await response.json();
+            const scriptList = document.getElementById('scriptList');
+            scriptList.innerHTML = scripts.map(script => `
+                <div class="section-card">
+                    <h3>${script.name}</h3>
+                    <pre>${script.code}</pre>
+                </div>
+            `).join('');
         }
 
-        // Filter scripts based on search input
-        function filterScripts() {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase();
-            const scriptCards = document.querySelectorAll('.script-card');
+        // Submit script form
+        document.getElementById('scriptForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const scriptName = document.getElementById('scriptName').value;
+            const scriptCode = document.getElementById('scriptCode').value;
 
-            scriptCards.forEach(card => {
-                const scriptName = card.getAttribute('data-name').toLowerCase();
-                if (scriptName.includes(searchInput)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
+            // Redirect users to create a pull request
+            const newScript = { name: scriptName, code: scriptCode };
+            const scriptJson = JSON.stringify(newScript, null, 2);
+            const issueBody = encodeURIComponent(`Please add the following script to the community:\n\n\`\`\`json\n${scriptJson}\n\`\`\``);
+            const issueUrl = `https://github.com/showcaser1/script-hub/issues/new?title=New%20Script%20Submission&body=${issueBody}`;
+
+            window.open(issueUrl, '_blank');
+        });
+
+        // Load scripts on page load
+        fetchScripts();
     </script>
 </body>
 </html>
