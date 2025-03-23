@@ -4,6 +4,7 @@ require('dotenv').config();
 // Import required modules
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 
 // Create an Express app
 const app = express();
@@ -13,12 +14,12 @@ const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 const GITHUB_CALLBACK_URL = process.env.GITHUB_CALLBACK_URL;
 
+// Serve static files (CSS, JS, images)
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Route: Homepage
 app.get('/', (req, res) => {
-    res.send(`
-        <h1>Welcome to Script Hub!</h1>
-        <a href="/auth/github">Login with GitHub</a>
-    `);
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Route: Redirect to GitHub for authentication
@@ -68,5 +69,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
