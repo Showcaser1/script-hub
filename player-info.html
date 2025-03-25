@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackware - Player Info</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* General Styles */
+        body {
+            background: #0d0d0d;
+            color: #ffffff;
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header with Animated Text */
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            background: #1a1a1a;
+            border-bottom: 2px solid #bb86fc;
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            color: #bb86fc;
+            animation: glow 2s infinite alternate, fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc;
+            }
+            100% {
+                text-shadow: 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 30px #bb86fc;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #1a1a1a;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            border-right: 2px solid #bb86fc;
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar h2 {
+            color: #bb86fc;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .sidebar a:hover {
+            background: #bb86fc;
+            color: #0d0d0d;
+            transform: translateX(10px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Player Cards */
+        .player-card {
+            background: #1a1a1a;
+            border: 1px solid #bb86fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.5s ease-in-out;
+            cursor: pointer;
+        }
+
+        .player-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.5);
+        }
+
+        .player-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #bb86fc;
+            margin: 0 auto 15px;
+            display: block;
+            background: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player-avatar::after {
+            content: "Loading...";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #bb86fc;
+            font-size: 12px;
+        }
+
+        .player-name {
+            color: #bb86fc;
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1a1a1a;
+            border-top: 2px solid #bb86fc;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        footer p {
+            color: #ffffff;
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Player Info</h1>
+        <a href="/auth/github" class="btn btn-primary" style="margin-top: 20px;">Login with GitHub</a>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <a href="index.html">Home</a>
+        <a href="other-scripts.html">Other Scripts</a>
+        <a href="executors.html">Executors</a>
+        <a href="player-info.html">Player Info</a>
+        <a href="credits.html">Credits</a>
+        <a href="community.html">Community</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="row" id="playerList">
+                <!-- Player cards will load here -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Blackware. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Player Data Script -->
+    <script>
+        // Replace these with actual Roblox UserIDs!
+        const players = [
+            { name: "ArracheurdeFritossi", id: "8171680472" },
+            { name: "JusticeForTheKnight", id: "8103235592" },
+            { name: "AimzSxcope", id: "7990483544" },
+            { name: "wuz_wuz", id: "4141545100" },
+            { name: "xxokeo", id: "2419364887" },
+            { name: "GTRPVX", id: "3776640083" }
+        ];
+
+        function loadPlayers() {
+            const playerList = document.getElementById('playerList');
+            
+            players.forEach(player => {
+                const col = document.createElement('div');
+                col.className = 'col-md-4 mb-4';
+                
+                const card = document.createElement('div');
+                card.className = 'player-card';
+                card.innerHTML = `
+                    <img src="https://www.roblox.com/headshot-thumbnail/image?userId=${player.id}&width=150&height=150&format=png" 
+                         class="player-avatar" 
+                         alt="${player.name}"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/150/1a1a1a/bb86fc?text=No+Avatar'">
+                    <h3 class="player-name">${player.name}</h3>
+                `;
+                
+                // Make cards clickable (opens Roblox profile)
+                card.addEventListener('click', () => {
+                    window.open(`https://www.roblox.com/users/${player.id}/profile`, '_blank');
+                });
+                
+                col.appendChild(card);
+                playerList.appendChild(col);
+            });
+        }
+
+        window.onload = loadPlayers;
+    </script>
+</body>
+</html>
