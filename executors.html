@@ -6,14 +6,16 @@
     <title>Executors - ScriptHub</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         /* General Styles */
         body {
-            background: #0d0d0d;
-            color: #ffffff;
+            background: #0a1929;
+            color: #e0f2ff;
             font-family: 'Roboto Mono', monospace;
             margin: 0;
             padding: 0;
@@ -29,24 +31,48 @@
         .header {
             text-align: center;
             padding: 50px 0;
-            background: #1a1a1a;
-            border-bottom: 2px solid #bb86fc;
-            box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
+            background: linear-gradient(135deg, #0a1929 0%, #123456 100%);
+            border-bottom: 2px solid #4dabf7;
+            box-shadow: 0 0 30px rgba(77, 171, 247, 0.4);
         }
 
         .header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            color: #bb86fc;
+            font-size: 4.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #4dabf7, #74c0fc, #4dabf7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             animation: glow 2s infinite alternate, fadeIn 1.5s ease-in-out;
+        }
+
+        .login-btn {
+            background: linear-gradient(45deg, #4dabf7, #339af0);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(77, 171, 247, 0.5);
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(77, 171, 247, 0.7);
+            background: linear-gradient(45deg, #339af0, #228be6);
         }
 
         @keyframes glow {
             0% {
-                text-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc;
+                text-shadow: 0 0 5px rgba(77, 171, 247, 0.5), 0 0 10px rgba(77, 171, 247, 0.3);
             }
             100% {
-                text-shadow: 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 30px #bb86fc;
+                text-shadow: 0 0 15px rgba(77, 171, 247, 0.8), 0 0 30px rgba(77, 171, 247, 0.5);
             }
         }
 
@@ -63,211 +89,373 @@
 
         /* Sidebar */
         .sidebar {
-            width: 250px;
+            width: 280px;
             height: 100vh;
-            background: #1a1a1a;
+            background: linear-gradient(180deg, #0a1929 0%, #123456 100%);
             position: fixed;
             top: 0;
             left: 0;
-            padding: 20px;
-            border-right: 2px solid #bb86fc;
-            box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
-            transition: transform 0.3s ease;
+            padding: 25px;
+            border-right: 2px solid #4dabf7;
+            box-shadow: 5px 0 25px rgba(77, 171, 247, 0.2);
+            transition: all 0.4s ease;
+            z-index: 1000;
         }
 
         .sidebar h2 {
-            color: #bb86fc;
+            color: #4dabf7;
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(77, 171, 247, 0.3);
             animation: fadeIn 1s ease-in-out;
         }
 
         .sidebar a {
-            display: block;
-            color: #ffffff;
+            display: flex;
+            align-items: center;
+            color: #e0f2ff;
             text-decoration: none;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
             transition: all 0.3s ease;
             animation: fadeIn 1s ease-in-out;
+            font-weight: 500;
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+            width: 24px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4dabf7;
         }
 
         .sidebar a:hover {
-            background: #bb86fc;
-            color: #0d0d0d;
+            background: rgba(77, 171, 247, 0.2);
+            color: #fff;
             transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(77, 171, 247, 0.2);
         }
 
         /* Main Content */
         .main-content {
-            margin-left: 250px;
-            padding: 20px;
+            margin-left: 280px;
+            padding: 30px;
             animation: fadeIn 1s ease-in-out;
         }
 
         /* Executors Section */
         .executors-section {
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #bb86fc;
-            box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
+            background: linear-gradient(135deg, #123456 0%, #0a1929 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #4dabf7;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             margin-top: 20px;
+        }
+
+        .executors-section h2 {
+            color: #4dabf7;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            animation: glow 2s infinite alternate;
         }
 
         /* Executor Cards */
         .executor-card {
-            background: #1a1a1a;
-            border: 1px solid #bb86fc;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 15px 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, #123456 0%, #0a1929 100%);
+            border: 2px solid #4dabf7;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            transition: all 0.4s ease;
             animation: fadeInUp 0.5s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .executor-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #4dabf7, transparent, #4dabf7);
+            z-index: -1;
+            border-radius: 15px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .executor-card:hover::before {
+            opacity: 1;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .executor-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 20px rgba(187, 134, 252, 0.5);
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(77, 171, 247, 0.3);
         }
 
         .executor-card h3 {
-            color: #bb86fc;
-            margin-bottom: 10px;
+            color: #4dabf7;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .executor-card h3 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
         }
 
         .executor-card p {
-            color: #ffffff;
+            color: #e0f2ff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
         }
 
         /* Executor Buttons */
         .executor-btn {
-            background: #bb86fc;
-            color: #0d0d0d;
+            background: linear-gradient(45deg, #4dabf7, #339af0);
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(77, 171, 247, 0.5);
             transition: all 0.3s ease;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             text-decoration: none;
             display: inline-block;
         }
 
         .executor-btn:hover {
-            background: #9a6fd8;
-            transform: scale(1.05);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(77, 171, 247, 0.7);
+            background: linear-gradient(45deg, #339af0, #228be6);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
-            background: #1a1a1a;
-            border-top: 2px solid #bb86fc;
-            margin-top: 20px;
+            padding: 30px 0;
+            background: linear-gradient(0deg, #0a1929 0%, #123456 100%);
+            border-top: 2px solid #4dabf7;
+            margin-top: 40px;
             animation: fadeIn 1s ease-in-out;
         }
 
         footer p {
-            color: #ffffff;
+            color: #e0f2ff;
             margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: #4dabf7;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #74c0fc;
+            transform: translateY(-3px);
         }
 
         /* Animations */
         @keyframes fadeInUp {
             0% {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             100% {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
+        /* Menu Toggle Button */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: #4dabf7;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(77, 171, 247, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            body.sidebar-open .sidebar {
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Menu Toggle Button (for mobile) -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <!-- Header -->
     <div class="header">
         <h1>ScriptHub</h1>
+        <!-- Add the Login with GitHub button -->
+        <a href="/auth/github" class="btn login-btn">
+            <i class="fab fa-github"></i> Login with GitHub
+        </a>
     </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <h2>Navigation</h2>
-        <a href="index.html">Home</a>
-        <a href="other-scripts.html">Other Scripts</a>
-        <a href="executors.html">Executors</a>
-        <a href="credits.html">Credits</a>
-        <a href="community.html">Community</a> <!-- Add this line -->
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="other-scripts.html"><i class="fas fa-code"></i> Other Scripts</a>
+        <a href="executors.html"><i class="fas fa-terminal"></i> Executors</a>
+        <a href="player-info.html"><i class="fas fa-user"></i> Player Info</a>
+        <a href="credits.html"><i class="fas fa-award"></i> Credits</a>
+        <a href="community.html"><i class="fas fa-users"></i> Community</a>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
         <div class="executors-section">
-            <h2 class="text-center glow">Executors</h2>
+            <h2>Executors</h2>
             <p class="text-center">Here are some recommended executors for running scripts:</p>
 
             <!-- Executor Cards -->
             <div class="executor-card">
-                <h3>Krnl</h3>
+                <h3><i class="fas fa-mobile-alt"></i> Krnl</h3>
                 <p>Best executor for mobile.</p>
-                <a href="https://krnl.cat/" target="_blank" class="executor-btn">Visit Krnl</a>
+                <a href="https://krnl.cat/" target="_blank" class="executor-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit Krnl
+                </a>
             </div>
 
             <div class="executor-card">
-                <h3>Synapse X</h3>
+                <h3><i class="fas fa-bolt"></i> Synapse X</h3>
                 <p>One of the most powerful executors for Roblox.</p>
-                <a href="https://x.synapse.to/" target="_blank" class="executor-btn">Visit Synapse X</a>
+                <a href="https://x.synapse.to/" target="_blank" class="executor-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit Synapse X
+                </a>
             </div>
 
             <div class="executor-card">
-                <h3>JJSploit</h3>
+                <h3><i class="fas fa-feather-alt"></i> JJSploit</h3>
                 <p>A free and lightweight executor for beginners.</p>
-                <a href="https://jjsploit.net/" target="_blank" class="executor-btn">Visit JJSploit</a>
+                <a href="https://jjsploit.net/" target="_blank" class="executor-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit JJSploit
+                </a>
             </div>
 
             <div class="executor-card">
-                <h3>Fluxus</h3>
+                <h3><i class="fas fa-wind"></i> Fluxus</h3>
                 <p>A free executor with a clean interface.</p>
-                <a href="https://fluxteam.net/" target="_blank" class="executor-btn">Visit Fluxus</a>
+                <a href="https://fluxteam.net/" target="_blank" class="executor-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit Fluxus
+                </a>
             </div>
 
             <div class="executor-card">
-                <h3>Electron</h3>
+                <h3><i class="fas fa-atom"></i> Electron</h3>
                 <p>A free executor with a focus on simplicity.</p>
-                <a href="https://electron.lol/" target="_blank" class="executor-btn">Visit Electron</a>
+                <a href="https://electron.lol/" target="_blank" class="executor-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit Electron
+                </a>
             </div>
 
             <div class="executor-card">
-                <h3>SPDM Team</h3>
+                <h3><i class="fas fa-users-cog"></i> SPDM Team</h3>
                 <p>A powerful executor for Roblox.</p>
-                <a href="https://spdmteam.com/" target="_blank" class="executor-btn">Visit SPDM Team</a>
+                <a href="https://spdmteam.com/" target="_blank" class="executor-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit SPDM Team
+                </a>
             </div>
 
             <div class="executor-card">
-                <h3>Xeno</h3>
+                <h3><i class="fas fa-code"></i> Xeno</h3>
                 <p>A lightweight executor for Roblox.</p>
-                <a href="https://xeno.now/" target="_blank" class="executor-btn">Visit Xeno</a>
+                <a href="https://xeno.now/" target="_blank" class="executor-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit Xeno
+                </a>
             </div>
 
             <div class="executor-card">
-                <h3>Wave</h3>
+                <h3><i class="fas fa-water"></i> Wave</h3>
                 <p>A free executor for Roblox.</p>
-                <a href="https://getwave.gg/" target="_blank" class="executor-btn">Visit Wave</a>
+                <a href="https://getwave.gg/" target="_blank" class="executor-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit Wave
+                </a>
             </div>
         </div>
 
         <!-- Footer -->
         <footer>
             <p>&copy; 2025 ScriptHub. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
         </footer>
     </div>
 
-    <!-- Bootstrap JS (Optional) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.body.classList.toggle('sidebar-open');
+        });
+    </script>
 </body>
 </html>
