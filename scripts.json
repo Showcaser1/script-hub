@@ -14,5 +14,18 @@
     {
         "name": "Forsaken",
         "code": "-- key is: web\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/souyanen/Fsscripts/refs/heads/main/Forsaken\"))()"
+    },
+    {
+        "name": "HTTPspy",
+        "code": "loadstring(game:HttpGet('https://rawscripts.net/raw/Universal-Script-HTTPspy-33022'))()"
+    },
+    {
+        "name": "HTTPspy",
+        "code": "loadstring(game:HttpGet('https://raw.githubusercontent.com/Dusty1234567890/Rob/main/Rob'))()"
+    },
+    {
+  "name": "Blade ball",
+  "code": "loadstring(game:HttpGet(\"https://api.luarmor.net/files/v3/loaders/79ab2d3174641622d317f9e234797acb.lua\"))()"
     }
+    
 ]
