@@ -20,7 +20,7 @@
         "code": "loadstring(game:HttpGet('https://rawscripts.net/raw/Universal-Script-HTTPspy-33022'))()"
     },
     {
-        "name": "hi",
+        "name": "Random script ",
         "code": "loadstring(game:HttpGet('https://raw.githubusercontent.com/Dusty1234567890/Rob/main/Rob'))()"
     },
     {
