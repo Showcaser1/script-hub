@@ -3,577 +3,1330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScriptHub - Exploit Hub</title>
+    <title>NEO-SCRIPT | Premium Exploit Hub</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&family=Space+Grotesk:wght@300;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
-        /* General Styles */
-        body {
-            background: #0a1929;
-            color: #e0f2ff;
-            font-family: 'Roboto Mono', monospace;
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff2d75;
+            --dark: #0a0e17;
+            --darker: #050a14;
+            --light: #e0f7ff;
+            --accent: #7b2dff;
+            --neon-glow: 0 0 10px rgba(0, 240, 255, 0.7), 0 0 20px rgba(0, 240, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.3);
+            --neon-glow-pink: 0 0 10px rgba(255, 45, 117, 0.7), 0 0 20px rgba(255, 45, 117, 0.5);
+        }
+
+        /* Base Styles */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Header with Animated Text */
-        .header {
-            text-align: center;
-            padding: 50px 0;
-            background: linear-gradient(135deg, #0a1929 0%, #123456 100%);
-            border-bottom: 2px solid #4dabf7;
-            box-shadow: 0 0 30px rgba(77, 171, 247, 0.4);
-        }
-
-        .header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #4dabf7, #74c0fc, #4dabf7);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: glow 2s infinite alternate, fadeIn 1.5s ease-in-out;
-        }
-
-        .login-btn {
-            background: linear-gradient(45deg, #4dabf7, #339af0);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(77, 171, 247, 0.5);
-            transition: all 0.3s ease;
-            margin-top: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(77, 171, 247, 0.7);
-            background: linear-gradient(45deg, #339af0, #228be6);
-        }
-
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 5px rgba(77, 171, 247, 0.5), 0 0 10px rgba(77, 171, 247, 0.3);
-            }
-            100% {
-                text-shadow: 0 0 15px rgba(77, 171, 247, 0.8), 0 0 30px rgba(77, 171, 247, 0.5);
-            }
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            height: 100vh;
-            background: linear-gradient(180deg, #0a1929 0%, #123456 100%);
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
-            padding: 25px;
-            border-right: 2px solid #4dabf7;
-            box-shadow: 5px 0 25px rgba(77, 171, 247, 0.2);
-            transition: all 0.4s ease;
-            z-index: 1000;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 45, 117, 0.1) 0%, transparent 20%);
+            z-index: -1;
+            pointer-events: none;
         }
 
-        .sidebar h2 {
-            color: #4dabf7;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.8rem;
+        h1, h2, h3, h4 {
             font-family: 'Orbitron', sans-serif;
-            letter-spacing: 2px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(77, 171, 247, 0.3);
-            animation: fadeIn 1s ease-in-out;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        .sidebar a {
+        /* Cyberpunk Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+            border-left: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--accent));
+            border-radius: 5px;
+            border: 2px solid var(--darker);
+        }
+
+        /* Header */
+        .neo-header {
+            background: linear-gradient(180deg, rgba(5, 10, 20, 0.9) 0%, rgba(5, 10, 20, 0.7) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .neo-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0.7;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-glow);
+            letter-spacing: 3px;
             display: flex;
             align-items: center;
-            color: #e0f2ff;
+        }
+
+        .logo i {
+            margin-right: 15px;
+            font-size: 2.2rem;
+        }
+
+        /* Navigation */
+        .neo-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--light);
             text-decoration: none;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            animation: fadeIn 1s ease-in-out;
+            font-family: 'Rajdhani', sans-serif;
             font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
         }
 
-        .sidebar a i {
-            margin-right: 10px;
-            width: 24px;
-            text-align: center;
-            font-size: 1.2rem;
-            color: #4dabf7;
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
 
-        .sidebar a:hover {
-            background: rgba(77, 171, 247, 0.2);
-            color: #fff;
-            transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(77, 171, 247, 0.2);
+        .nav-link:hover {
+            color: var(--primary);
         }
 
-        .sidebar a:hover i {
-            transform: scale(1.2);
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::before {
+            width: 100%;
+        }
+
+        /* Auth Buttons */
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
+        .btn-neon {
+            position: relative;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-neon-primary {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--darker);
+        }
+
+        .btn-neon-secondary {
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-neon:hover::before {
+            opacity: 1;
+        }
+
+        .btn-neon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 240, 255, 0.4);
+            color: var(--darker);
+        }
+
+        .btn-neon:active {
+            transform: translateY(1px);
         }
 
         /* Main Content */
         .main-content {
-            margin-left: 280px;
-            padding: 30px;
-            animation: fadeIn 1s ease-in-out;
-            min-height: 100vh;
+            padding: 3rem 0;
             position: relative;
         }
 
-        /* Search Bar */
-        .search-bar {
-            margin-bottom: 30px;
-            animation: fadeIn 1s ease-in-out;
+        /* Hero Section */
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
             position: relative;
+            overflow: hidden;
+            padding: 5rem 0;
         }
 
-        .search-bar input {
-            width: 100%;
-            padding: 15px 15px 15px 50px;
-            background: rgba(18, 52, 86, 0.6);
-            color: #e0f2ff;
-            border: 2px solid #4dabf7;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
-        .search-bar i {
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(90deg, var(--primary), var(--light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-glow);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            opacity: 0.9;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .hero-bg {
             position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #4dabf7;
-            font-size: 1.3rem;
-        }
-
-        .search-bar input:focus {
-            border-color: #74c0fc;
-            box-shadow: 0 0 15px rgba(77, 171, 247, 0.5);
-            outline: none;
-        }
-
-        .search-bar input::placeholder {
-            color: #a5d8ff;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 50%;
+            background: 
+                radial-gradient(circle at center, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+                url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop') center/cover;
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+            z-index: 1;
             opacity: 0.7;
         }
 
-        /* Script Cards */
-        .script-card {
-            background: linear-gradient(135deg, #123456 0%, #0a1929 100%);
-            border: 2px solid #4dabf7;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-            transition: all 0.4s ease;
-            animation: fadeInUp 0.5s ease-in-out;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--dark) 10%, transparent 50%);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 5rem 0;
+        }
+
+        .stat-card {
+            background: rgba(5, 10, 20, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             position: relative;
             overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                transparent,
+                rgba(0, 240, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .stat-card:hover::before {
+            animation: shine 1.5s;
+            opacity: 1;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.5;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Script Hub Section */
+        .hub-section {
+            margin: 5rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .search-container {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            background: rgba(5, 10, 20, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 50px;
+            color: var(--light);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Script Cards */
+        .script-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .script-card {
+            background: linear-gradient(145deg, rgba(5, 10, 20, 0.8), rgba(10, 20, 40, 0.5));
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         .script-card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #4dabf7, transparent, #4dabf7);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 240, 255, 0.1) 0%,
+                rgba(123, 45, 255, 0.1) 100%
+            );
             z-index: -1;
-            border-radius: 15px;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.3s ease;
+        }
+
+        .script-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.1);
+            border-color: rgba(0, 240, 255, 0.3);
         }
 
         .script-card:hover::before {
             opacity: 1;
-            animation: rotate 3s linear infinite;
         }
 
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .script-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 40px rgba(77, 171, 247, 0.3);
-        }
-
-        .script-card h3 {
-            color: #4dabf7;
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
+        .script-card-header {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .script-card-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .script-card-icon {
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+
+        .script-card-badge {
+            background: rgba(255, 45, 117, 0.2);
+            color: var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--secondary);
+        }
+
+        .script-card-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .script-card-code {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Space Grotesk', monospace;
+            color: var(--light);
+            resize: none;
+            margin-bottom: 1.5rem;
+            min-height: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .script-card-code:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .script-card-footer {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .script-card h3 i {
-            margin-right: 10px;
-            font-size: 1.5rem;
+        .script-card-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
         }
 
-        .script-card p {
-            color: #e0f2ff;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+        .author-avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--primary);
         }
 
-        .script-card textarea {
-            width: 100%;
-            background: rgba(10, 25, 41, 0.8);
-            color: #a5d8ff;
-            border: 1px solid #4dabf7;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            resize: none;
-            transition: all 0.3s ease;
-            font-family: 'Roboto Mono', monospace;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+        .script-card-actions {
+            display: flex;
+            gap: 0.8rem;
         }
 
-        .script-card textarea:focus {
-            border-color: #74c0fc;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1), 0 0 15px rgba(77, 171, 247, 0.3);
-            outline: none;
-        }
-
-        /* Copy Button */
-        .copy-btn {
-            background: linear-gradient(45deg, #4dabf7, #339af0);
-            color: #fff;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            font-weight: bold;
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(77, 171, 247, 0.3);
-        }
-
-        .copy-btn i {
-            margin-right: 8px;
-        }
-
-        .copy-btn:hover {
-            background: linear-gradient(45deg, #339af0, #228be6);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(77, 171, 247, 0.5);
-        }
-
-        .copy-btn:active {
-            transform: translateY(1px);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(0deg, #0a1929 0%, #123456 100%);
-            border-top: 2px solid #4dabf7;
-            margin-top: 40px;
-            animation: fadeIn 1s ease-in-out;
-            position: relative;
-        }
-
-        footer p {
-            color: #e0f2ff;
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .social-icons {
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            color: #4dabf7;
-            font-size: 1.5rem;
-            margin: 0 10px;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .social-icons a:hover {
-            color: #74c0fc;
+        .action-btn:hover {
+            background: rgba(0, 240, 255, 0.2);
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .action-btn.copy:hover {
+            color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .action-btn.save:hover {
+            color: #2dff8f;
+            border-color: #2dff8f;
         }
 
         /* Status Indicator */
-        .status {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+        .status-indicator {
             display: flex;
             align-items: center;
-            background: rgba(10, 25, 41, 0.8);
-            padding: 8px 15px;
+            gap: 0.5rem;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 240, 255, 0.1);
+            padding: 0.5rem 1rem;
             border-radius: 50px;
-            border: 1px solid #4dabf7;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 10;
         }
 
         .status-dot {
             width: 10px;
             height: 10px;
-            background: #4BB543;
             border-radius: 50%;
-            margin-right: 8px;
+            background: #2dff8f;
+            box-shadow: 0 0 10px #2dff8f;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
             0% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(75, 181, 67, 0.7);
+                box-shadow: 0 0 0 0 rgba(45, 255, 143, 0.7);
             }
             70% {
                 transform: scale(1);
-                box-shadow: 0 0 0 10px rgba(75, 181, 67, 0);
+                box-shadow: 0 0 0 10px rgba(45, 255, 143, 0);
             }
             100% {
                 transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(75, 181, 67, 0);
+                box-shadow: 0 0 0 0 rgba(45, 255, 143, 0);
+            }
+        }
+
+        /* Footer */
+        .neo-footer {
+            background: linear-gradient(180deg, rgba(5, 10, 20, 0.9) 0%, rgba(5, 10, 20, 1) 100%);
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 3rem 0 1.5rem;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-description {
+            opacity: 0.7;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 240, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .floating-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 10%;
+            left: 10%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .floating-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: 10%;
+            right: 10%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .floating-3 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            top: 50%;
+            right: 20%;
+            animation: float 12s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(50px, 50px);
             }
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            .main-content {
-                margin-left: 0;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            body.sidebar-open .sidebar {
-                transform: translateX(0);
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 4rem;
             }
         }
 
-        /* Menu Toggle Button */
-        .menu-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1001;
-            background: #4dabf7;
-            border: none;
-            width: 45px;
-            height: 45px;
+        @media (max-width: 992px) {
+            .hero-section {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .hero-bg {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.3;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .script-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
             display: none;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: auto;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(0, 240, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(77, 171, 247, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
         }
 
-        .menu-toggle:focus {
-            outline: none;
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 45, 117, 0.1);
+            border: 1px solid rgba(255, 45, 117, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-close:hover {
+            background: rgba(255, 45, 117, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .mobile-nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--primary);
+        }
+
+        .mobile-nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
-    <!-- Menu Toggle Button (for mobile) -->
-    <button class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
-    </button>
+    <!-- Floating Background Elements -->
+    <div class="floating-element floating-1"></div>
+    <div class="floating-element floating-2"></div>
+    <div class="floating-element floating-3"></div>
 
     <!-- Header -->
-    <div class="header">
-        <h1>ScriptHub</h1>
-        <!-- Add the Login with GitHub button -->
-        <a href="/auth/github" class="btn login-btn">
-            <i class="fab fa-github"></i> Login with GitHub
-        </a>
+    <header class="neo-header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>NEO-SCRIPT</span>
+                </div>
+                <nav class="neo-nav">
+                    <div class="nav-links">
+                        <a href="#" class="nav-link active">Home</a>
+                        <a href="#" class="nav-link">Scripts</a>
+                        <a href="#" class="nav-link">Executors</a>
+                        <a href="#" class="nav-link">Community</a>
+                        <a href="#" class="nav-link">Docs</a>
+                    </div>
+                    <div class="auth-buttons">
+                        <button class="btn-neon btn-neon-secondary">Login</button>
+                        <button class="btn-neon btn-neon-primary">Sign Up</button>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mobile-nav-links">
+            <a href="#" class="mobile-nav-link active">Home</a>
+            <a href="#" class="mobile-nav-link">Scripts</a>
+            <a href="#" class="mobile-nav-link">Executors</a>
+            <a href="#" class="mobile-nav-link">Community</a>
+            <a href="#" class="mobile-nav-link">Docs</a>
+        </div>
+        <div class="mobile-auth-buttons">
+            <button class="btn-neon btn-neon-secondary">Login</button>
+            <button class="btn-neon btn-neon-primary">Sign Up</button>
+        </div>
     </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>Navigation</h2>
-        <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="other-scripts.html"><i class="fas fa-code"></i> Other Scripts</a>
-        <a href="executors.html"><i class="fas fa-terminal"></i> Executors</a>
-        <a href="player-info.html"><i class="fas fa-user"></i> Player Info</a>
-        <a href="credits.html"><i class="fas fa-award"></i> Credits</a>
-        <a href="community.html"><i class="fas fa-users"></i> Community</a>
+    <!-- Status Indicator -->
+    <div class="status-indicator" data-aos="fade-left">
+        <div class="status-dot"></div>
+        <span>All Systems Operational</span>
     </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="hero-title">PREMIUM EXPLOIT SCRIPTS</h1>
+                <p class="hero-subtitle">
+                    Access the most powerful and undetected scripts for your favorite games. 
+                    Our curated collection is constantly updated to ensure maximum performance and security.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-neon btn-neon-primary">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </button>
+                    <button class="btn-neon btn-neon-secondary">
+                        <i class="fas fa-book"></i> Documentation
+                    </button>
+                </div>
+            </div>
+            <div class="hero-bg"></div>
+        </div>
+    </section>
 
     <!-- Main Content -->
-    <div class="main-content">
-        <!-- Status Indicator -->
-        <div class="status">
-            <div class="status-dot"></div>
-            <span>Online</span>
-        </div>
+    <main class="main-content">
+        <div class="container">
+            <!-- Stats Grid -->
+            <div class="stats-grid" data-aos="fade-up">
+                <div class="stat-card">
+                    <div class="stat-number">1,250+</div>
+                    <div class="stat-label">Active Scripts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Undetected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Users</div>
+                </div>
+            </div>
 
-        <!-- Search Bar -->
-        <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Search scripts by name..." oninput="filterScripts()">
-        </div>
+            <!-- Script Hub Section -->
+            <section class="hub-section">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title">Featured Scripts</h2>
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Search scripts...">
+                    </div>
+                </div>
 
-        <!-- Script Cards -->
-        <div id="scriptList">
-            <div class="script-card" data-name="Speed Hub">
-                <h3><i class="fas fa-bolt"></i> Speed Hub</h3>
-                <p>A premium hub for speed-related scripts with optimized performance.</p>
-                <textarea id="script1" readonly rows="3">
+                <div class="script-grid">
+                    <!-- Script Card 1 -->
+                    <div class="script-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="script-card-header">
+                            <h3 class="script-card-title">
+                                <i class="fas fa-bolt script-card-icon"></i>
+                                Speed Hub
+                            </h3>
+                            <span class="script-card-badge">Premium</span>
+                        </div>
+                        <p class="script-card-description">
+                            A premium hub for speed-related scripts with optimized performance and minimal detection risk.
+                        </p>
+                        <textarea class="script-card-code" readonly>
 loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-                </textarea>
-                <button class="copy-btn" onclick="copyScript('script1')">
-                    <i class="fas fa-copy"></i> Copy Script
-                </button>
-            </div>
+                        </textarea>
+                        <div class="script-card-footer">
+                            <div class="script-card-author">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" class="author-avatar">
+                                <span>@AhmadV99</span>
+                            </div>
+                            <div class="script-card-actions">
+                                <button class="action-btn copy" title="Copy Script">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <button class="action-btn save" title="Save Script">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                                <button class="action-btn" title="Execute Script">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="script-card" data-name="Infinite Yield">
-                <h3><i class="fas fa-infinity"></i> Infinite Yield</h3>
-                <p>A powerful admin script for Roblox with extensive command features.</p>
-                <textarea id="script2" readonly rows="3">
+                    <!-- Script Card 2 -->
+                    <div class="script-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="script-card-header">
+                            <h3 class="script-card-title">
+                                <i class="fas fa-infinity script-card-icon"></i>
+                                Infinite Yield
+                            </h3>
+                            <span class="script-card-badge">Popular</span>
+                        </div>
+                        <p class="script-card-description">
+                            A powerful admin script for Roblox with extensive command features and regular updates.
+                        </p>
+                        <textarea class="script-card-code" readonly>
 loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-                </textarea>
-                <button class="copy-btn" onclick="copyScript('script2')">
-                    <i class="fas fa-copy"></i> Copy Script
-                </button>
-            </div>
+                        </textarea>
+                        <div class="script-card-footer">
+                            <div class="script-card-author">
+                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Author" class="author-avatar">
+                                <span>@EdgeIY</span>
+                            </div>
+                            <div class="script-card-actions">
+                                <button class="action-btn copy" title="Copy Script">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <button class="action-btn save" title="Save Script">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                                <button class="action-btn" title="Execute Script">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="script-card" data-name="Arsenal Aimbot">
-                <h3><i class="fas fa-crosshairs"></i> Arsenal Aimbot</h3>
-                <p>Advanced targeting system for Arsenal with customizable settings.</p>
-                <textarea id="script3" readonly rows="3">
+                    <!-- Script Card 3 -->
+                    <div class="script-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="script-card-header">
+                            <h3 class="script-card-title">
+                                <i class="fas fa-crosshairs script-card-icon"></i>
+                                Arsenal Aimbot
+                            </h3>
+                            <span class="script-card-badge">New</span>
+                        </div>
+                        <p class="script-card-description">
+                            Advanced targeting system for Arsenal with customizable settings and smooth performance.
+                        </p>
+                        <textarea class="script-card-code" readonly>
 loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))()
-                </textarea>
-                <button class="copy-btn" onclick="copyScript('script3')">
-                    <i class="fas fa-copy"></i> Copy Script
-                </button>
+                        </textarea>
+                        <div class="script-card-footer">
+                            <div class="script-card-author">
+                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Author" class="author-avatar">
+                                <span>@CriShoux</span>
+                            </div>
+                            <div class="script-card-actions">
+                                <button class="action-btn copy" title="Copy Script">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <button class="action-btn save" title="Save Script">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                                <button class="action-btn" title="Execute Script">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="neo-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">NEO-SCRIPT</div>
+                    <p class="footer-description">
+                        The most advanced script hub for gaming enthusiasts. 
+                        Providing high-quality, undetected scripts since 2023.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-links">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Tutorials</a></li>
+                            <li><a href="#">API Reference</a></li>
+                            <li><a href="#">Changelog</a></li>
+                            <li><a href="#">Status</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-links">
+                        <h3>Community</h3>
+                        <ul>
+                            <li><a href="#">Discord Server</a></li>
+                            <li><a href="#">GitHub</a></li>
+                            <li><a href="#">Forums</a></li>
+                            <li><a href="#">Contributors</a></li>
+                            <li><a href="#">Sponsors</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-links">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="#">DMCA</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 NEO-SCRIPT. All rights reserved.</p>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2025 ScriptHub. All rights reserved.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-discord"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-        </footer>
-    </div>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Custom JS -->
     <script>
-        // Copy Script Function with animation
-        function copyScript(id) {
-            const scriptText = document.getElementById(id);
-            scriptText.select();
-            document.execCommand('copy');
-            
-            // Create and show toast notification
-            const toast = document.createElement('div');
-            toast.style.position = 'fixed';
-            toast.style.bottom = '20px';
-            toast.style.right = '20px';
-            toast.style.background = '#4dabf7';
-            toast.style.color = '#fff';
-            toast.style.padding = '15px 25px';
-            toast.style.borderRadius = '5px';
-            toast.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
-            toast.style.zIndex = '1000';
-            toast.innerHTML = '<i class="fas fa-check-circle"></i> Script copied to clipboard!';
-            toast.style.animation = 'fadeIn 0.3s, fadeOut 0.3s 2s forwards';
-            
-            document.body.appendChild(toast);
-            
-            // Remove toast after 2.5 seconds
-            setTimeout(() => {
-                document.body.removeChild(toast);
-            }, 2500);
-        }
-
-        // Filter scripts based on search input
-        function filterScripts() {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase();
-            const scriptCards = document.querySelectorAll('.script-card');
-
-            scriptCards.forEach(card => {
-                const scriptName = card.getAttribute('data-name').toLowerCase();
-                if (scriptName.includes(searchInput)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Mobile menu toggle
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.body.classList.toggle('sidebar-open');
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
         });
 
-        // Add keyframes for the toast notifications
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Copy script function
+        document.querySelectorAll('.action-btn.copy').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const scriptCard = this.closest('.script-card');
+                const scriptCode = scriptCard.querySelector('.script-card-code');
+                
+                // Select the text
+                scriptCode.select();
+                scriptCode.setSelectionRange(0, 99999); // For mobile devices
+                
+                // Copy the text
+                document.execCommand('copy');
+                
+                // Show notification
+                const notification = document.createElement('div');
+                notification.style.position = 'fixed';
+                notification.style.bottom = '30px';
+                notification.style.right = '30px';
+                notification.style.backgroundColor = 'rgba(0, 240, 255, 0.2)';
+                notification.style.backdropFilter = 'blur(10px)';
+                notification.style.border = '1px solid var(--primary)';
+                notification.style.padding = '15px 25px';
+                notification.style.borderRadius = '8px';
+                notification.style.color = 'var(--light)';
+                notification.style.fontFamily = 'Space Grotesk, sans-serif';
+                notification.style.boxShadow = '0 5px 20px rgba(0, 240, 255, 0.2)';
+                notification.style.zIndex = '1000';
+                notification.style.display = 'flex';
+                notification.style.alignItems = 'center';
+                notification.style.gap = '10px';
+                notification.style.animation = 'fadeIn 0.3s ease-in-out';
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                    <span>Script copied to clipboard!</span>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    notification.style.animation = 'fadeOut 0.3s ease-in-out';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            });
+        });
+
+        // Add keyframes for notifications
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes fadeIn {
@@ -582,10 +1335,28 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/maste
             }
             @keyframes fadeOut {
                 from { opacity: 1; transform: translateY(0); }
-                to { opacity: 0; transform: translateY(-20px); }
+                to { opacity: 0; transform: translateY(20px); }
             }
         `;
         document.head.appendChild(style);
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const scriptCards = document.querySelectorAll('.script-card');
+            
+            scriptCards.forEach(card => {
+                const title = card.querySelector('.script-card-title').textContent.toLowerCase();
+                const description = card.querySelector('.script-card-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
